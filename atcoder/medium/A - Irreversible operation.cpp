@@ -6,14 +6,16 @@ int main() {
     cin.tie(NULL);
     string s;
     cin >> s;
-    string d = s;
-    reverse(d.begin(), d.end());
-    int count = 0;
-    for (int i = 0; i < s.length(); ++i){
-        if(s[i] != d[i]){
-            count++;
-        }
+    long long n = s.length();
+    long long count = 0;
+    long long total = 0;
+    for (int i = n - 1; i >= 0; --i){
+            if(s[i] == 'B'){
+                total += (n-i-1) - count;
+                count++;
+            }
     }
-    cout << count;
+    cout << total;
     return 0;
 }
+

@@ -8,31 +8,29 @@ int main() {
     string s;
     cin >> s;
     int n = s.length();
-    
     long long total = 0;
-    char curr = s[0];
-    int length = 1;
-    vector<int> lengths;
-    for(int i = 1; i < n; i++){
-        if (s[i] == curr){
-            length++;
+    vector<int> left(n+1,0);
+    vector<int> right(n+1,0);
+    for(int i = 0; i <= n - 1; i++){
+        if(s[i] == '<'){
+            left[i + 1] = left[i] + 1;
         }else{
-            curr = s[i];
-            lengths.push_back(length);
-            total += ((length)*(length-1))/2;
-            length = 0;
+            left[i+1] = 0;
         }
     }
-    curr = s[0];
-    int pointer = 0;
-    for(int i = 1; i < n; i++){
-        if(s[i] != curr){
-            if(s[i] == '>' && s[i-1] == '<'){
-                total += max(lengths[pointer], lengths[pointer + 1]);
-            }
-            pointer++;
+
+    for (int i = n - 1; i >= 0; i--){
+        if(s[i] == '>'){
+            right[i] = right[i+1] + 1;
+        }else{
+            right[i] = 0;
         }
     }
+
+    for(int i = 0; i <= n; i++){
+        total += max(left[i], right[i]);
+    }
+
     cout << total;
     return 0;
 }

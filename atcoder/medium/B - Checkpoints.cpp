@@ -28,8 +28,7 @@ int main() {
         long long d = abs(temp.first - coordinates.first) + abs(temp.second - coordinates.second);
         close[i] = 0;
         for(int j = 1; j < m; ++j){
-            auto checkpoint = checkpoints[i];
-            cout << checkpoint.first << " " << checkpoint.second << "\n";
+            auto checkpoint = checkpoints[j];
             if( (abs((coordinates.first - checkpoint.first)) + abs((coordinates.second - checkpoint.second))) < d){
                 d = abs(coordinates.first - checkpoint.first) + abs(coordinates.second - checkpoint.second);
                 close[i] = j;
